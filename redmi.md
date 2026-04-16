@@ -1,0 +1,5 @@
+saidiagnosticlab123_db_user
+PASS
+rgOweJ00FDHgCYiS
+
+mongodb+srv://saidiagnosticlab123_db_user:rgOweJ00FDHgCYiS/?appName=Cluster0

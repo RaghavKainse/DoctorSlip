@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@layer components {
+  /* You can add custom component styles here if needed */
+}
+
+@layer utilities {
+  @media print {
+    @page {
+      size: A4;
+      margin: 0;
+    }
+    body {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .print-hidden {
+      display: none !important;
+    }
+    .print-only {
+      display: block !important;
+    }
+    .print-container, .print-area {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 210mm !important;
+      height: 297mm !important;
+      box-shadow: none !important;
+      page-break-after: always;
+      overflow: hidden;
+    }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 297mm !important;
+      overflow: hidden;
+    }
+  }
+}
+
+body {
+  background-color: #f3f4f6;
+}
