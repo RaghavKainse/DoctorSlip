@@ -86,10 +86,11 @@ export default function SlipGenerator() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 p-4 lg:p-6 h-[calc(100vh-70px)] bg-slate-50 border-t border-slate-200">
+    <div className="flex flex-col lg:flex-row gap-6 p-2 md:p-4 lg:p-6 h-auto lg:h-[calc(100vh-70px)] bg-slate-50 border-t border-slate-200 overflow-x-hidden">
       
-      {/* LEFT SIDE - Rigid High-UX Container */}
-      <div className="w-full lg:w-[400px] flex flex-col h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden shrink-0">
+      {/* LEFT SIDE - Entry Panel */}
+      <div className="w-full lg:w-[400px] flex flex-col h-auto lg:h-full bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden shrink-0">
+
         
         {/* SCROLLABLE FORMS AREA */}
         <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-5 custom-scrollbar">
@@ -227,23 +228,28 @@ export default function SlipGenerator() {
         {/* LOCKED ACTIONS AT BOTTOM */}
         <div className="flex flex-col gap-2 p-4 bg-slate-50 border-t border-slate-200 shrink-0">
           <div className="flex gap-2">
-            <button onClick={handlePrint} className="flex-1 bg-slate-800 hover:bg-slate-900 text-white py-2 rounded-md font-bold flex items-center justify-center gap-2 text-xs shadow-sm transition-colors">
+            <button onClick={handlePrint} className="flex-1 bg-slate-800 hover:bg-slate-900 text-white py-2 rounded-md font-bold flex items-center justify-center gap-2 text-[11px] shadow-sm transition-colors uppercase">
               <Printer size={16} /> Print
             </button>
-            <button onClick={handleDownloadPDF} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md font-bold flex items-center justify-center gap-2 text-xs shadow-sm transition-colors">
-              <Download size={16} /> Save PDF
+            <button onClick={handleDownloadPDF} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-md font-bold flex items-center justify-center gap-2 text-[11px] shadow-sm transition-colors uppercase">
+              <Download size={16} /> PDF
             </button>
           </div>
-          <button onClick={handleSaveAndShare} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 rounded-md font-bold flex items-center justify-center gap-2 text-sm shadow-sm transition-colors focus:ring-2 focus:ring-[#25D366] focus:ring-offset-1 mt-1">
-            <MessageCircle size={18} /> Share via WhatsApp
+          <button onClick={handleSaveAndShare} className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-2.5 rounded-md font-bold flex items-center justify-center gap-2 text-[12px] shadow-sm transition-colors focus:ring-2 focus:ring-[#25D366] focus:ring-offset-1 mt-1 uppercase">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+            </svg> Share via WhatsApp
           </button>
         </div>
       </div>
 
+
       {/* RIGHT SIDE - A4 Preview */}
-      <div className="flex-1 overflow-y-auto bg-slate-200/50 p-4 lg:p-8 flex justify-center items-start print:p-0 print:bg-white print:overflow-visible rounded-2xl inner-shadow border border-slate-200">
-        <div ref={printRef} className="bg-white shadow-2xl print:shadow-none w-[210mm] h-[297mm] flex flex-col max-w-full relative mx-auto print:mx-0 overflow-hidden box-border print:h-[297mm]">
-          <SlipPreview patientDetails={patientDetails} tests={selectedTests} subtotal={subtotal} discount={discount} total={total} hidePrice={hidePrice} />
+      <div className="flex-1 bg-slate-200 p-2 md:p-6 lg:p-10 overflow-auto flex flex-col items-center custom-scrollbar">
+        <div className="mt-4 lg:mt-0 transition-all transform scale-[0.42] sm:scale-[0.6] md:scale-[0.8] lg:scale-100 origin-top mb-10 w-fit">
+           <div ref={printRef} className="print-area shadow-2xl bg-white">
+             <SlipPreview patientDetails={patientDetails} tests={selectedTests} subtotal={subtotal} discount={discount} total={total} hidePrice={hidePrice} />
+           </div>
         </div>
       </div>
     </div>
