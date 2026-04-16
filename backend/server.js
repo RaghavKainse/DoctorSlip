@@ -9,12 +9,8 @@ const Report = require('./models/Report');
 
 const app = express();
 
-const origin = process.env.NODE_ENV === 'production' 
-  ? 'https://doctorslip-frontend-7igmpp2ak-raghavkainses-projects.vercel.app' 
-  : '*';
-
 app.use(cors({
-  origin: origin,
+  origin: true, // This reflects the request origin, making it work for any Vercel alias
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -23,7 +19,7 @@ app.use(express.json());
 
 // Root route for health check
 app.get('/', (req, res) => {
-  res.send('Sai Diagnostic API is running...');
+  res.json({ message: 'Sai Diagnostic API is running...', status: 'live' });
 });
 
 
